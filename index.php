@@ -4,13 +4,18 @@ include 'header.php';
 <div id="main-content">
     <h2>All Records</h2>
     <?php 
-
+    // making connnection with database 
     $conn = mysqli_connect("localhost","root","","crud")or die("connection failed");
 
+
+    // writing myql query 
     $sql = "SELECT * FROM student JOIN studentclass ON student.sclass = studentclass.cid";
 
+//  executing mysqk query 
     $result = mysqli_query($conn, $sql)or die("query unsuccessfull");
 
+
+    // checking the query 
                 if(mysqli_num_rows($result)>0)
                 {
 
@@ -26,7 +31,7 @@ include 'header.php';
         <th>Action</th>
         </thead>
         <tbody>
-
+                    <!-- fetching rows from database and showing in table  -->
         <?php 
         while($row = mysqli_fetch_assoc($result)){
         ?>
@@ -55,6 +60,7 @@ include 'header.php';
     {  echo "<h2>No Record Found</h2>  " ;
      }
 
+    //  closing the connection 
     mysqli_close($conn);
 
     ?>
